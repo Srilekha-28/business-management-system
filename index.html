@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Business Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <div id="app">
+        <div id="login-screen" class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <i class="fa-solid fa-chart-line login-logo"></i>
+                    <h2>NexusCorp</h2>
+                    <p>Business Management Suite</p>
+                </div>
+                <form id="login-form" onsubmit="App.Auth.login(event)">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="login-username" required placeholder="admin / manager / employee">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="login-password" required placeholder="••••••••">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+                <div class="demo-credentials">
+                    <p><strong>Demo Access:</strong> Use matching roles as usernames (e.g., <code>admin</code> / <code>admin</code>)</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-dashboard" class="dashboard-layout hidden">
+            <aside class="sidebar">
+                <div class="sidebar-brand">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>NexusCorp</span>
+                </div>
+                <div class="user-profile-summary">
+                    <div class="avatar" id="user-avatar">U</div>
+                    <div class="user-info">
+                        <h4 id="user-display-name">Loading...</h4>
+                        <span id="user-display-role" class="badge">Role</span>
+                    </div>
+                </div>
+                <nav class="sidebar-menu" id="sidebar-menu">
+                    </nav>
+            </aside>
+
+            <main class="main-content">
+                <header class="top-bar">
+                    <div class="header-left">
+                        <button id="sidebar-toggle" class="btn-icon"><i class="fa-solid fa-bars"></i></button>
+                        <h2 id="current-view-title">Dashboard Overview</h2>
+                    </div>
+                    <div class="header-right">
+                        <button id="theme-toggle" class="btn-icon" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+                        <div class="notification-bell" onclick="App.UI.toggleNotifications()">
+                            <button class="btn-icon"><i class="fa-solid fa-bell"></i></button>
+                            <span class="nav-badge" id="noti-count">0</span>
+                            <div id="notification-dropdown" class="notification-dropdown hidden">
+                                <h4>Recent Notifications</h4>
+                                <div id="notification-list"></div>
+                            </div>
+                        </div>
+                        <button onclick="App.Auth.logout()" class="btn btn-secondary btn-sm"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </header>
+
+                <div class="view-content" id="view-content">
+                    </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="global-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-title">Form Window</h3>
+                <button class="close-btn" onclick="App.UI.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
